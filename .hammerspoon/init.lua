@@ -20,10 +20,11 @@ hs.timer.doAt("0:00","1h", function() hs.alert("Ding Dong") end)
 
 hs.fnutils.each({
         { key = "i", app = "iTerm"},
-        { key = "m", app = "VimR"},
+        { key = "v", app = "MacVim"},
         { key = "r", app = "Skim"},
         { key = "b", app = "Safari"},
-        { key = "t", app = "Mail"},
+        { key = "t", app = "Todoist"},
+        { key = "m", app = "Edison Mail"},
         { key = "p", app = "Preview"},
         { key = "x", app = "Xcode"},
 },function(object)

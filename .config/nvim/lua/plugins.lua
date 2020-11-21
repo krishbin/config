@@ -3,20 +3,16 @@ vim.cmd [[packadd packer.nvim]]
 return require('packer').startup(function()
     use {'wbthomason/packer.nvim', opt = true}
 
-    use 'bronson/vim-trailing-whitespace'
-
     use {'mhinz/vim-startify'}
     use {'romgrk/nvim-treesitter-context'}
     use {'mhinz/vim-signify'}
+    use {'christoomey/vim-tmux-navigator'}
 
-    use {
-        'itchyny/lightline.vim',
-        config = function()
-
-        end}
     use 'tpope/vim-surround'
     use 'tpope/vim-commentary'
     use 'tpope/vim-fugitive'
+
+    use 'itchyny/lightline.vim'
 
     use {
         'pangloss/vim-javascript',
@@ -40,20 +36,16 @@ return require('packer').startup(function()
 
     use {'nvim-lua/lsp-status.nvim'}
 
-    use {'tjdevries/nlua.nvim'}
-
-    use {'morhetz/gruvbox',
-	config=function() 
-          vim.cmd('colorscheme gruvbox')
-				end
-      }
+    use {'morhetz/gruvbox'}
+    use {'joshdick/onedark.vim'}
+    use {'arcticicestudio/nord-vim'}
+    use {'sainnhe/gruvbox-material'}
 
     use {'tikhomirov/vim-glsl'}
 
     use {
         'neovim/nvim-lspconfig',
-        'nvim-lua/completion-nvim',
-        'nvim-lua/diagnostic-nvim'
+        'nvim-lua/completion-nvim'
       }
 
     use {'nvim-lua/popup.nvim'}
@@ -67,9 +59,7 @@ return require('packer').startup(function()
         end
       }
 
-    use {
-        'kyazdani42/nvim-tree.lua',
-      }
+    use {'kyazdani42/nvim-tree.lua'}
 
     use {'nvim-treesitter/nvim-treesitter'}
 

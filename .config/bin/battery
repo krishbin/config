@@ -15,11 +15,11 @@ elif [[ charge -gt 20 ]];then
     battery_sign=""
 else
     battery_sign=""
-    battery_color="#[fg=colour88,bg=colour250]"
+    battery_color="#[fg=colour250] #[fg=colour88,bg=colour250]"
 fi;
 
 if [[ "$status_bat" = "AC" ]];then
-    echo "#[fg=colour72,bg=colour236] $charge $battery_sign #[bg=colour236]"
+    echo "#[fg=colour235] #[fg=colour72,bg=colour235] $charge $battery_sign #[bg=colour235]"
 else
     echo "$battery_color $charge $battery_sign "
 fi;

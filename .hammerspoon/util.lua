@@ -41,6 +41,20 @@ menu = {
   {
     title = "-" -- separator
   },
+  {
+    title = "Open Config",
+    fn = function()
+        hs.notify.new({title='Config', informativeText='Opened Config files for hammerspoon.'}):send()
+            hs.execute("open ~/.hammerspoon/init.lua");
+    end
+  },
+  {
+    title = "Reload Config",
+    fn = function()
+        hs.notify.new({title='Config', informativeText='Reloaded Config'}):send()
+            hs.reload()
+    end
+  }
 }
 
 reloadMenu()

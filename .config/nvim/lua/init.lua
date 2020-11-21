@@ -28,14 +28,17 @@ o.shortmess = vim.o.shortmess .. 'c'
 o.smartindent = true -- auto indent on new line (brackets for instance) BO
 o.textwidth = 80
 o.formatoptions = o.formatoptions:gsub('[cro]', '')
+wo.number=true
+wo.relativenumber=true
+wo.cursorline=true
 
 
 require'plugins'
 require'_loadPlugins'
 require'_lsp'.setup()
+require'_statusline'.setup()
 require'_telescope'.setup()
 require'_nvimtree'.setup()
-require'_diagnostic'.setup()
 require'_snips'.setup()
 
 
@@ -44,12 +47,10 @@ a.nvim_exec([[
 	" we have to set these window options here because vim.o won't accept them and vim.wo wont set for each window automatically
 	" and binding to an autocmd will mess with window that change those settings
 
-	set nu
-	set rnu
-	set colorcolumn=100
+        set colorcolumn=100
 	set completeopt=menuone,noinsert,noselect
-	set cursorline
-	set linebreak
+  colorscheme ]].. require'_utils'.colorscheme ..[[ 
+        set linebreak
 	if has("autocmd")
 	filetype plugin indent on
 	endif
@@ -57,6 +58,7 @@ a.nvim_exec([[
 	set foldexpr=nvim_treesitter#foldexpr()
 	" Disable autocommenting on newline and retrieve last position
 	au BufWinEnter * exec "normal! g'\""
+
 	au FileType scheme set ft=query
 	au FileType c,cpp set tabstop=4 shiftwidth=4 noexpandtab
 	au FileType python set tabstop=4 shiftwidth=4 noexpandtab
@@ -165,34 +167,10 @@ g.vimtex_view_method = 'skim'
 
 g.signify_disable_by_default=1
 
-g.lightline = {
-	colorscheme= 'gruvbox',
-	active= {
-		left= { { 'mode', 'paste' },
-			{ 'gitbranch' },{ 'readonly', 'absolutepath', 'modified' } },
-		right= { {'lineinfo'},
-			{ 'percent' },
-			{ 'filetype', 'fileencoding'} } },
-	component_function= {
-		gitbranch= 'FugitiveHead',
-	},
-	component_type= {
-		tabs= 'tabsel',
-		readonly= 'error',
-		close= ''
-	}
-}
-
-g.lightline.enable = {
-	statusline= 1,
-	tabline= 1
-}
-
 g.python3_host_prog="/usr/local/bin/python3"
 g.completion_sorting = "length"
 g.completion_trigger_keyword_length = 3
 g.completion_timer_cycle = 200
-g.gruvbox_color_column="bg3"
 g.vimtex_enabled=1
 g.vimtex_fold_enabled=1
 g.startify_bookmarks = {

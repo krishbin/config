@@ -34,6 +34,7 @@ set numberwidth=4
 set autoread                             "autoread file if it is changed in buffer
 set expandtab
 set autoindent
+set guifont=JetBrainsMono\ Nerd\ Font
 set autochdir                            "autochange directory on the basis of what file you are editing
 set clipboard^=unnamed                   "add system clipboard support
 set clipboard^=unnamedplus
