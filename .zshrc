@@ -30,3 +30,4 @@ unset __conda_setup
 
 export PATH="/usr/local/opt/llvm/bin:$PATH"
 export TMUXP_CONFIGDIR=$HOME/.config/tmuxp
+export GOPATH=$HOME/.config/go

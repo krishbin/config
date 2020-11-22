@@ -12,6 +12,9 @@ return require('packer').startup(function()
     use 'tpope/vim-commentary'
     use 'tpope/vim-fugitive'
 
+    use 'Xuyuanp/scrollbar.nvim'
+    use 'jiangmiao/auto-pairs'
+
     use 'itchyny/lightline.vim'
 
     use {

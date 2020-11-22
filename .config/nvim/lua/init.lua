@@ -28,6 +28,11 @@ o.shortmess = vim.o.shortmess .. 'c'
 o.smartindent = true -- auto indent on new line (brackets for instance) BO
 o.textwidth = 80
 o.formatoptions = o.formatoptions:gsub('[cro]', '')
+o.colorcolumn = '100'
+o.completeopt = "menuone,noinsert,noselect"
+o.linebreak = true
+o.foldmethod='expr'
+o.foldexpr='nvim_treesitter#foldexpr()'
 wo.number=true
 wo.relativenumber=true
 wo.cursorline=true
@@ -44,46 +49,49 @@ require'_snips'.setup()
 
 
 a.nvim_exec([[
-	" we have to set these window options here because vim.o won't accept them and vim.wo wont set for each window automatically
-	" and binding to an autocmd will mess with window that change those settings
+  " we have to set these window options here because vim.o won't accept them and vim.wo wont set for each window automatically
+  " and binding to an autocmd will mess with window that change those settings
 
-        set colorcolumn=100
-	set completeopt=menuone,noinsert,noselect
   colorscheme ]].. require'_utils'.colorscheme ..[[ 
-        set linebreak
-	if has("autocmd")
-	filetype plugin indent on
-	endif
-	set foldmethod=expr
-	set foldexpr=nvim_treesitter#foldexpr()
-	" Disable autocommenting on newline and retrieve last position
-	au BufWinEnter * exec "normal! g'\""
+  if has("autocmd")
+  filetype plugin indent on
+  endif
+  " Disable autocommenting on newline and retrieve last position
+  au BufWinEnter * exec "normal! g'\""
 
-	au FileType scheme set ft=query
-	au FileType c,cpp set tabstop=4 shiftwidth=4 noexpandtab
-	au FileType python set tabstop=4 shiftwidth=4 noexpandtab
-	au FileType markdown set tabstop=4 shiftwidth=4 conceallevel=2
-	au FileType typescriptreact,typescript,javascript,javascriptreact,lua set tabstop=2 shiftwidth=2
-	au FileType vim set fdm=marker
-	au TextYankPost * silent! lua require'vim.highlight'.on_yank({ timeout=500 })
+  au FileType scheme set ft=query
+  au FileType c,cpp set tabstop=4 shiftwidth=4 noexpandtab
+  au FileType yaml set tabstop=2 shiftwidth=2 noexpandtab
+  au FileType python set tabstop=4 shiftwidth=4 noexpandtab
+  au FileType markdown set tabstop=4 shiftwidth=4 conceallevel=2
+  au FileType typescriptreact,typescript,javascript,javascriptreact,lua set tabstop=2 shiftwidth=2
+  au FileType vim set fdm=marker
+  au TextYankPost * silent! lua require'vim.highlight'.on_yank({ timeout=500 })
 
-	autocmd Filetype help nmap <silent><buffer> q :q<CR>
-	autocmd Filetype help wincmd K
-	autocmd FileType tex nnoremap <F5> :silent VimtexCompile<CR>
-	autocmd FileType tex inoremap <F5> <esc>:silent VimtexCompile<CR>
-	augroup CompletionTriggerCharacter
-	autocmd!
-	autocmd BufEnter * let g:completion_trigger_character = ['.']
-	autocmd BufEnter *.c,*.cpp let g:completion_trigger_character = ['.', '::']
-	augroup end
-	autocmd FileType markdown set foldexpr=NestedMarkdownFolds()
+  autocmd Filetype help nmap <silent><buffer> q :q<CR>
+  autocmd Filetype help wincmd K
+  autocmd FileType tex nnoremap <F5> :silent VimtexCompile<CR>
+  autocmd FileType tex inoremap <F5> <esc>:silent VimtexCompile<CR>
+  augroup CompletionTriggerCharacter
+  autocmd!
+  autocmd BufEnter * let g:completion_trigger_character = ['.']
+  autocmd BufEnter *.c,*.cpp let g:completion_trigger_character = ['.', '::']
+  augroup end
+  autocmd FileType markdown set foldexpr=NestedMarkdownFolds()
 
-	autocmd Filetype c,cpp nnoremap <leader><C-s> m`:w!<cr>:%!clang-format %<cr>:w<cr>``
+  autocmd Filetype c,cpp nnoremap <leader><C-s> m`:w!<cr>:%!clang-format %<cr>:w<cr>``
 
-	cabbrev W w
-	cabbrev E e
-	cabbrev Wq wq
-	]], '')
+  augroup ScrollbarInit
+  autocmd!
+  autocmd CursorMoved,VimResized,QuitPre * silent! lua require('scrollbar').show()
+  autocmd WinEnter,FocusGained           * silent! lua require('scrollbar').show()
+  autocmd WinLeave,FocusLost             * silent! lua require('scrollbar').clear()
+  augroup end
+
+  cabbrev W w
+  cabbrev E e
+  cabbrev Wq wq
+  ]], '')
 
 local map = require('_utils').map
 
@@ -174,8 +182,21 @@ g.completion_timer_cycle = 200
 g.vimtex_enabled=1
 g.vimtex_fold_enabled=1
 g.startify_bookmarks = {
-	{ i='~/.config/nvim/lua/init.lua'},
-	{ s='~/.config/nvim/lua/_snips.lua'},
-	{ z='~/.zshrc' },
-	{ p='~/Workshop/cpp/major_project/src/main.cpp' },
+  { i='~/.config/nvim/lua/init.lua'},
+  { s='~/.config/nvim/lua/_snips.lua'},
+  { z='~/.zshrc' },
+  { p='~/Workshop/cpp/major_project/src/main.cpp' },
+}
+
+g.scrollbar_max_size = 8
+g.scrollbar_shape = {
+head= '',
+body= '⏽',
+tail= '',
+}
+
+g.scrollbar_highlight = {
+head= 'LineNr',
+body= 'LineNr',
+tail= 'LineNr',
 }
