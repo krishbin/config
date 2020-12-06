@@ -145,6 +145,11 @@ cnoremap <C-n> <Down>
 cnoremap <Up> <C-p>
 cnoremap <Down> <C-n>
 
+let g:UltiSnipsExpandTrigger="<C-y>"
+let g:UltiSnipsJumpForwardTrigger="<C-y>"
+let g:UltiSnipsJumpBackwardTrigger="<C-e>"
+
+
 colorscheme gruvbox-material
 
 set background=dark
@@ -155,6 +160,9 @@ let g:tex_flavor = "latex"
 let g:vimtex_view_method = 'skim'
 
 autocmd BufRead,BufNewFile *.md,gitcommit,tex setlocal spell
+
+set pythonthreedll=/usr/local/Frameworks/Python.framework/Versions/Current/Python
+set pythonthreehome=/usr/local/Frameworks/Python.framework/Versions/Current/
 
 let g:lightline = {
                         \ 'colorscheme': 'gruvbox_material',

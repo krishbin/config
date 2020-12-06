@@ -1,5 +1,4 @@
 alias config='/usr/bin/git --git-dir=$HOME/.myconfig/ --work-tree=$HOME'
-alias cask='brew cask'
 alias reset='cd ~;source ~/.zshrc;clear'
 alias dmod=dark-mode
 alias vim=nvim
@@ -15,7 +14,7 @@ alias ls=exa
 alias ll='exa -l'
 alias l='/bin/ls'
 alias cat=bat
-alias fzfp='fzf --preview "bat --style=numbers --color=always --line-range :500 {}'
+alias fzfp='fzf --preview "bat --style=numbers --color=always --line-range :500 {}"'
 alias tdo='todoist'
 
 #################

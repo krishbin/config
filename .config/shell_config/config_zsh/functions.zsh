@@ -47,34 +47,3 @@ function cpp(){
         gcc -lstdc++ $1 -o ${${1}%.*}
     fi
 }
-
-
-#autojum zsh
-
-#tmux
-
-function nv(){
-    case $1 in
-        plugin)
-            nvim $HOME/.config/nvim/plug.vim
-            ;;
-        init)
-            nvim $HOME/.config/nvim/init.vim
-            ;;
-        statusline)
-            nvim $HOME/.config/nvim/statusline.vim
-            ;;
-        map)
-            nvim $HOME/.config/nvim/map.vim
-            ;;
-        default)
-            nvim $HOME/.config/nvim/default.vim
-            ;;
-        vim_set)
-            nvim $HOME/.config/nvim/vim_set.vim
-            ;;
-        *)
-            nvim $HOME/.config/nvim/map.vim
-            ;;
-    esac
-}
