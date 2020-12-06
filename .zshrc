@@ -30,4 +30,6 @@ unset __conda_setup
 
 export PATH="/usr/local/opt/llvm/bin:$PATH"
 export TMUXP_CONFIGDIR=$HOME/.config/tmuxp
-export GOPATH=$HOME/.config/go
+source $(brew --prefix)/share/zsh/site-functions/_todoist_fzf
+export FZF_DEFAULT_COMMAND='rg --files --no-ignore-vcs --hidden'
+export PROMPT_EOL_MARK=''

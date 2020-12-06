@@ -15,8 +15,8 @@ alias ls=exa
 alias ll='exa -l'
 alias l='/bin/ls'
 alias cat=bat
-alias qalias='vim $HOME/.config/shell_config/zsh_config/aliases.zsh'
-alias classmail='python3 ~/Workshop/python/mail/send.py'
+alias fzfp='fzf --preview "bat --style=numbers --color=always --line-range :500 {}'
+alias tdo='todoist'
 
 #################
 #  git aliases  #

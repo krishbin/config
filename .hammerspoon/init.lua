@@ -2,10 +2,10 @@ hyper = {"ctrl","alt"}
 hyper_s = {"ctrl","alt","shift"}
 hyper_c = {"ctrl","alt","command"}
 hyper_a = {"ctrl","command"}
+karabiner_hyper = {"command","ctrl","shift","alt"}
 
 require('window')
 require('util')
-hs.loadSpoon("FnMate")
 
 hs.window.animationDuration = 0
 hs.window.setShadows(false)
@@ -19,16 +19,16 @@ hs.timer.doAt("0:00","1h", function() hs.alert("Ding Dong") end)
 
 
 hs.fnutils.each({
-        { key = "i", app = "iTerm"},
+        { key = "i", app = "Alacritty"},
         { key = "v", app = "MacVim"},
-        { key = "r", app = "Skim"},
-        { key = "b", app = "Safari"},
+        { key = "l", app = "Skim"},
+        { key = "s", app = "Safari"},
         { key = "t", app = "Todoist"},
         { key = "m", app = "Edison Mail"},
-        { key = "p", app = "Preview"},
+        { key = "r", app = "Preview"},
         { key = "x", app = "Xcode"},
 },function(object)
-        hs.hotkey.bind(hyper_a, object.key,
+        hs.hotkey.bind(karabiner_hyper, object.key,
         function()
                 local app = hs.application.get(object.app)
                 if app then

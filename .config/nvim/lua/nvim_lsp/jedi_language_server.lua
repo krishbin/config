@@ -1,4 +1,5 @@
-local configs = require 'nvim_lsp/configs'
+
+local configs = require 'lspconfig/configs'
 
 configs.jedi_language_server = {
   default_config = {
@@ -18,3 +19,4 @@ https://github.com/pappasam/jedi-language-server
     };
   };
 };
+-- vim:et ts=2 sw=2

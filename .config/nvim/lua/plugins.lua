@@ -15,6 +15,10 @@ return require('packer').startup(function()
     use 'Xuyuanp/scrollbar.nvim'
     use 'jiangmiao/auto-pairs'
 
+    use 'SirVer/ultisnips'
+
+    use 'honza/vim-snippets'
+
     use 'itchyny/lightline.vim'
 
     use {
@@ -28,16 +32,14 @@ return require('packer').startup(function()
       }
 
     use {'tpope/vim-markdown',
-      ft = {'md'}
+        ft = {'md'}
       }
 
     use {'masukomi/vim-markdown-folding',
-      ft = {'md'}
+        ft = {'md'}
       }
 
-    use {'norcalli/snippets.nvim'}
-
-    use {'nvim-lua/lsp-status.nvim'}
+    use 'preservim/tagbar'
 
     use {'morhetz/gruvbox'}
     use {'joshdick/onedark.vim'}
@@ -53,7 +55,8 @@ return require('packer').startup(function()
 
     use {'nvim-lua/popup.nvim'}
     use {'nvim-lua/plenary.nvim'}
-    use {'nvim-lua/telescope.nvim'}
+    use 'nvim-telescope/telescope.nvim'
+    use 'nvim-telescope/telescope-packer.nvim'
     use {'kyazdani42/nvim-web-devicons',
         config=function()
           require'nvim-web-devicons'.setup {

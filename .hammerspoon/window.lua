@@ -37,6 +37,35 @@ hs.hotkey.bind(hyper_c, 'h', function()
     win:moveToScreen(next, true)
   end
 end)
+local window = require "hs.window"
+local screen = require "hs.screen"
+local fnutils = require "hs.fnutils"
+local mouse = require "hs.mouse"
+local geometry = require "hs.geometry"
+
+hs.hotkey.bind(karabiner_hyper, '0', function() focusScreen(window.focusedWindow():screen():next()) end)
+hs.hotkey.bind(karabiner_hyper, '9', function() focusScreen(window.focusedWindow():screen():previous()) end)
+
+
+function focusScreen(screen)
+  --Get windows within screen, ordered from front to back.
+  --If no windows exist, bring focus to desktop. Otherwise, set focus on
+  --front-most application window.
+  local windows = fnutils.filter(
+      window.orderedWindows(),
+      fnutils.partial(isInScreen, screen))
+  local windowToFocus = #windows > 0 and windows[1] or window.desktop()
+  windowToFocus:focus()
+
+  -- move cursor to center of screen
+  local pt = geometry.rectMidPoint(screen:fullFrame())
+  mouse.setAbsolutePosition(pt)
+end
+
+--Predicate that checks if a window belongs to a screen
+function isInScreen(screen, win)
+  return win:screen() == screen
+end
 
 -- window hints
 hs.hotkey.bind({'shift', 'cmd'}, 'h', hs.hints.windowHints)

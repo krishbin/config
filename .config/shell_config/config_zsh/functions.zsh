@@ -8,6 +8,10 @@ g() {
     fi
 }
 
+ql() {
+	qlmanage -p $@ &> /dev/null
+}
+
 cg() {
     if [[ $# -gt 0 ]]; then
         config "$@"

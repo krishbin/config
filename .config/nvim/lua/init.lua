@@ -56,12 +56,10 @@ a.nvim_exec([[
   if has("autocmd")
   filetype plugin indent on
   endif
-  " Disable autocommenting on newline and retrieve last position
-  au BufWinEnter * exec "normal! g'\""
 
   au FileType scheme set ft=query
-  au FileType c,cpp set tabstop=4 shiftwidth=4 noexpandtab
-  au FileType yaml set tabstop=2 shiftwidth=2 noexpandtab
+  autocmd FileType yaml setlocal ts=2 sts=2 sw=2 expandtab
+  autocmd FileType cpp setlocal ts=2 sts=2 sw=2 expandtab
   au FileType python set tabstop=4 shiftwidth=4 noexpandtab
   au FileType markdown set tabstop=4 shiftwidth=4 conceallevel=2
   au FileType typescriptreact,typescript,javascript,javascriptreact,lua set tabstop=2 shiftwidth=2
@@ -72,6 +70,7 @@ a.nvim_exec([[
   autocmd Filetype help wincmd K
   autocmd FileType tex nnoremap <F5> :silent VimtexCompile<CR>
   autocmd FileType tex inoremap <F5> <esc>:silent VimtexCompile<CR>
+
   augroup CompletionTriggerCharacter
   autocmd!
   autocmd BufEnter * let g:completion_trigger_character = ['.']
@@ -79,7 +78,7 @@ a.nvim_exec([[
   augroup end
   autocmd FileType markdown set foldexpr=NestedMarkdownFolds()
 
-  autocmd Filetype c,cpp nnoremap <leader><C-s> m`:w!<cr>:%!clang-format %<cr>:w<cr>``
+  autocmd Filetype c,cpp nnoremap <leader><C-s> m`:w!<cr>:%!clang-format --style=Google %<cr>:w<cr>``
 
   augroup ScrollbarInit
   autocmd!
@@ -110,6 +109,7 @@ map('n','<leader>l','<C-w>l',{noremap=true,nowait=true})
 map('n','<leader>ia','m`gg=G``',{noremap=true})
 --clear highlighting
 map('n','<leader>ch',':noh<CR>',{noremap=true,silent=true})
+map('n','<F8>',':TagbarToggle<CR>',{noremap=true,silent=true})
 --long single line as multiline
 map('n','j','gj',{noremap=true})
 map('n','k','gk',{noremap=true})
@@ -166,12 +166,14 @@ map('n','<leader>9','9gt',{noremap=true})
 --LuaTree
 map('i','<Tab>',"pumvisible() ? \"\\<C-n>\" : \"\\<Tab>\"",{expr=true,noremap=true})
 map('i','<S-Tab>',"pumvisible() ? \"\\<C-p>\" : \"\\<S-Tab>\"",{expr=true,noremap=true})
-map('n','<leader>co',':silent !tmux send-keys -t 1 "./configure.sh" "C-m"<cr>',{})
-map('n','<leader>cc',':silent !tmux send-keys -t 1 "./build.sh" "C-m"<cr>',{})
-map('n','<leader>rr',':silent !tmux send-keys -t 1 "./run.sh" "C-m"<cr>',{})
+map('n','<leader>co',':silent !tmux send-keys -t 1 "./proj.sh configure" "C-m"<cr>',{})
+map('n','<leader>cc',':silent !tmux send-keys -t 1 "./proj.sh build" "C-m"<cr>',{})
+map('n','<leader>cs',':silent !tmux send-keys -t 1 "./proj.sh shader" "C-m"<cr>',{})
+map('n','<leader>rr',':silent !tmux send-keys -t 1 "./proj.sh run" "C-m"<cr>',{})
 
 g.tex_flavor = "latex"
 g.vimtex_view_method = 'skim'
+g.vimtex_compiler_progname = 'nvr'
 
 g.signify_disable_by_default=1
 
@@ -183,20 +185,20 @@ g.vimtex_enabled=1
 g.vimtex_fold_enabled=1
 g.startify_bookmarks = {
   { i='~/.config/nvim/lua/init.lua'},
-  { s='~/.config/nvim/lua/_snips.lua'},
   { z='~/.zshrc' },
-  { p='~/Workshop/cpp/major_project/src/main.cpp' },
+  { m='~/devel/lang/cpp/jpeg_compressor/src/main.cpp' }
 }
+g.startify_change_to_vcs_root = 0
 
 g.scrollbar_max_size = 8
 g.scrollbar_shape = {
-head= '',
-body= '⏽',
-tail= '',
+  head= '',
+  body= '⏽',
+  tail= '',
 }
 
 g.scrollbar_highlight = {
-head= 'LineNr',
-body= 'LineNr',
-tail= 'LineNr',
+  head= 'LineNr',
+  body= 'LineNr',
+  tail= 'LineNr',
 }

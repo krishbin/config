@@ -20,6 +20,8 @@ function obj:init()
             return true, {hs.eventtap.event.newKeyEvent({}, "left", true)}
         elseif event:getFlags()['fn'] and event:getCharacters() == "l" then
             return true, {hs.eventtap.event.newKeyEvent({}, "right", true)}
+        elseif event:getFlags()['fn'] and event:getCharacters() == "f1" then
+            return true, {hs.eventtap.event.newKeyEvent({}, "f13", true)}
         elseif event:getFlags()['fn'] and event:getCharacters() == "j" then
             return true, {hs.eventtap.event.newKeyEvent({}, "down", true)}
         elseif event:getFlags()['fn'] and event:getCharacters() == "k" then
