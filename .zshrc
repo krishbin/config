@@ -5,31 +5,31 @@ for file in ~/.config/shell_config/plugins_zsh/*(.); do source "$file"; done
 
 export TERMINAL='iTerm'
 
-[ -f /usr/local/etc/profile.d/autojump.sh ] && . /usr/local/etc/profile.d/autojump.sh
-
-[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+export FPATH="$FPATH:/opt/local/share/zsh/site-functions/"
+if [ -f /opt/local/etc/profile.d/autojump.sh ]; then
+        . /opt/local/etc/profile.d/autojump.sh
+fi
+[ -f /opt/local/share/fzf/shell/key-bindings.zsh ] && source /opt/local/share/fzf/shell/key-bindings.zsh 
 
 source ~/.config/shell_config/zsh-autosuggestions/zsh-autosuggestions.zsh
-
-export PATH="/usr/local/opt/grep/libexec/gnubin:$PATH"
 
 # >>> conda initialize >>>
 # !! Contents within this block are managed by 'conda init' !!
 __conda_setup="$('/usr/local/miniconda/bin/conda' 'shell.zsh' 'hook' 2> /dev/null)"
 if [ $? -eq 0 ]; then
-    eval "$__conda_setup"
+        eval "$__conda_setup"
 else
-    if [ -f "/usr/local/miniconda/etc/profile.d/conda.sh" ]; then
-        . "/usr/local/miniconda/etc/profile.d/conda.sh"
-    else
-        export PATH="/usr/local/miniconda/bin:$PATH"
-    fi
+        if [ -f "/usr/local/miniconda/etc/profile.d/conda.sh" ]; then
+                . "/usr/local/miniconda/etc/profile.d/conda.sh"
+        else
+                export PATH="/usr/local/miniconda/bin:$PATH"
+        fi
 fi
 unset __conda_setup
 # <<< conda initialize <<<
 
-export PATH="/usr/local/opt/llvm/bin:$PATH"
 export TMUXP_CONFIGDIR=$HOME/.config/tmuxp
-source $(brew --prefix)/share/zsh/site-functions/_todoist_fzf
 export FZF_DEFAULT_COMMAND='rg --files --no-ignore-vcs --hidden'
 export PROMPT_EOL_MARK=''
+export CARGO_HOME=/usr/local/lang/rust/cargo
+export RUSTUP_HOME=/usr/local/lang/rust/rustup

@@ -15,9 +15,6 @@ return require('packer').startup(function()
     use 'Xuyuanp/scrollbar.nvim'
     use 'jiangmiao/auto-pairs'
 
-    use 'SirVer/ultisnips'
-
-    use 'honza/vim-snippets'
 
     use 'itchyny/lightline.vim'
 
@@ -26,22 +23,8 @@ return require('packer').startup(function()
         ft = {'js'}
       }
 
-    use {
-        'posva/vim-vue',
-        ft = {'html','vue'}
-      }
-
-    use {'tpope/vim-markdown',
-        ft = {'md'}
-      }
-
-    use {'masukomi/vim-markdown-folding',
-        ft = {'md'}
-      }
-
     use 'preservim/tagbar'
 
-    use {'morhetz/gruvbox'}
     use {'joshdick/onedark.vim'}
     use {'arcticicestudio/nord-vim'}
     use {'sainnhe/gruvbox-material'}
@@ -68,10 +51,6 @@ return require('packer').startup(function()
     use {'kyazdani42/nvim-tree.lua'}
 
     use {'nvim-treesitter/nvim-treesitter'}
-
-    use {'dart-lang/dart-vim-plugin',
-        ft = {'dart'}
-      }
 
     use {'lervag/vimtex',
         ft = {'tex'}
