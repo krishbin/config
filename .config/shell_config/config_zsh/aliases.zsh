@@ -1,10 +1,6 @@
 alias config='/usr/bin/git --git-dir=$HOME/.myconfig/ --work-tree=$HOME'
 alias reset='cd ~;source ~/.zshrc;clear'
-alias dmod=dark-mode
-alias vim=nvim
-alias vshort='vim ~/workshop/notes/nvim'
 alias tmun='tmux new-session -t'
-alias mdb='mongod -f /usr/local/etc/mongod.conf'
 alias glog='git log --all --decorate --graph'
 alias glogo='git log --all --decorate --all --oneline'
 alias cglog='cg log --all --decorate --graph'
@@ -15,7 +11,6 @@ alias ll='exa -l'
 alias l='/bin/ls'
 alias cat=bat
 alias fzfp='fzf --preview "bat --style=numbers --color=always --line-range :500 {}"'
-alias tdo='todoist'
 
 #################
 #  git aliases  #
